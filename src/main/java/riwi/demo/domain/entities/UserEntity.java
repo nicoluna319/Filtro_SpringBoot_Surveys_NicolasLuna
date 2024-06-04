@@ -37,7 +37,7 @@ public class UserEntity {
     @Column(nullable = false, length = 150)
     private String password;
 
-    @Column(nullable = false)
+    @Column()
     private Boolean active;
 
 
