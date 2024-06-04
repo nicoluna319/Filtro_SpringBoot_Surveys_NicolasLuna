@@ -40,18 +40,18 @@ public class SurveyEntity {
     @Column(nullable = false)
     private Timestamp creationDate;
 
-    @ManyToOne
-    @JoinColumn(name = "creator_id", referencedColumnName = "id")
-    private UserEntity creator;
-
 
     @Column(nullable = false)
     private Boolean active;
 
+
+    
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "survey", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
     private List<QuestionEntity> question;
     
-
+    @ManyToOne
+    @JoinColumn(name = "creator_id", referencedColumnName = "id")
+    private UserEntity creator;
 }

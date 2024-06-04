@@ -38,12 +38,13 @@ public class QuestionEntity {
     @Column(nullable = false)
     private Type type;
     
-    @ManyToOne
-    @JoinColumn(name = "survey_id", referencedColumnName = "id")
-    private SurveyEntity survey;    
 
     @Column(nullable = false)
     private Boolean active;
+
+    @ManyToOne
+    @JoinColumn(name = "survey_id", referencedColumnName = "id")
+    private SurveyEntity survey;    
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
