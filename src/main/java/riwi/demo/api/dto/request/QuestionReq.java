@@ -14,6 +14,7 @@ import riwi.demo.utils.enums.Type;
 @NoArgsConstructor
 public class QuestionReq {
 
+
     @NotBlank(message = "el texto de la pregunta es requerido")
     private String text;
     

@@ -14,6 +14,7 @@ import riwi.demo.utils.enums.Type;
 @NoArgsConstructor
 public class QuestionResp {
     
+    private String id;
     private String text;
     private Type type;
     private Boolean active;

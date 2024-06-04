@@ -11,7 +11,7 @@ import riwi.demo.api.dto.request.QuestionReq;
 import riwi.demo.api.dto.response.QuestionResp;
 
 import riwi.demo.domain.entities.QuestionEntity;
-import riwi.demo.domain.entities.UserEntity;
+
 import riwi.demo.domain.repositories.QuestionRepository;
 import riwi.demo.infrastructure.abstract_services.IQuestionService;
 import riwi.demo.utils.exception.BadRequestException;
@@ -40,7 +40,11 @@ public class QuestionService implements IQuestionService {
     @Override
     public QuestionResp update(QuestionReq request, String id) {
 
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        QuestionEntity question = this.find(id);
+        QuestionEntity questionUpdate = this.requestToEntity(request);
+        questionUpdate.setId(id);
+        questionUpdate.setType(question.getType());
+        return this.entityToResponse(this.questionRepository.save(questionUpdate));
     }
 
     @Override
@@ -78,6 +82,7 @@ public class QuestionService implements IQuestionService {
 
 private QuestionResp entityToResponse(QuestionEntity entity) {
     return QuestionResp.builder()
+            .id(entity.getId())
             .text(entity.getText())
             .type(entity.getType())
             .active(entity.getActive())
