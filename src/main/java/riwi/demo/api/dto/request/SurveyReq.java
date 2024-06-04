@@ -27,7 +27,5 @@ public class SurveyReq {
     @NotBlank(message = "True or false es requerido")
     private Boolean active;
 
-    @NotBlank(message = "Id creator es requerido")
-    private Long creator;
 
 }
