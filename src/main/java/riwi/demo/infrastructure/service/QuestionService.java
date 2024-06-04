@@ -50,7 +50,7 @@ public class QuestionService implements IQuestionService {
     @Override
     public void delete(String id) {
 
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        this.questionRepository.delete(this.find(id));
     }
 
     @Override
