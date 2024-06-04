@@ -38,7 +38,11 @@ public class UserService implements IUserService {
     @Override
     public UserResp update(UserReq request, String id) {
 
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        UserEntity user = this.find(id);
+        UserEntity userUpdate = this.requestToEntity(request);
+        userUpdate.setId(id);
+        userUpdate.setSurveys(user.getSurveys());
+        return this.entityToResponse(this.userRepository.save(userUpdate));
     }
 
     @Override

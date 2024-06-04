@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,6 +64,19 @@ public class UserController {
             @PathVariable String id) {
         return ResponseEntity.ok(this.userService.get(id));
     }
+
+
+
+    @ApiResponse(responseCode = "400", description = "cuando el request no es valido", content = {
+        @Content(mediaType = "application/json", schema = @Schema(implementation = BaseErrorResponse.class))
+})
+        @PutMapping(path = "/{id}")
+    public ResponseEntity<UserResp> update(
+            @Validated @RequestBody UserReq request,
+            @PathVariable String id) {
+        return ResponseEntity.ok(this.userService.update(request, id));
+    }
+
 
 
     
