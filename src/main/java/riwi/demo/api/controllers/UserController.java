@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
 import riwi.demo.api.dto.errors.BaseErrorResponse;
+import riwi.demo.api.dto.errors.ErrorResponse;
 import riwi.demo.api.dto.request.UserReq;
 import riwi.demo.api.dto.response.UserResp;
 import riwi.demo.infrastructure.abstract_services.IUserService;
@@ -50,6 +52,16 @@ public class UserController {
     public ResponseEntity<UserResp> insert(
             @Validated @RequestBody UserReq request) {
         return ResponseEntity.ok(this.userService.create(request));
+    }
+
+    @ApiResponse(responseCode = "400", description = "cuando el ID no es valido", content = {
+        @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+})
+
+        @GetMapping(path = "/{id}")
+    public ResponseEntity<UserResp> get(
+            @PathVariable String id) {
+        return ResponseEntity.ok(this.userService.get(id));
     }
 
 

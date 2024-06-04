@@ -1,14 +1,9 @@
 package riwi.demo.infrastructure.service;
 
-
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
 import lombok.AllArgsConstructor;
 import riwi.demo.api.dto.request.UserReq;
 import riwi.demo.api.dto.response.UserResp;
@@ -17,6 +12,7 @@ import riwi.demo.domain.repositories.UserRepository;
 import riwi.demo.infrastructure.abstract_services.IUserService;
 import riwi.demo.utils.exception.BadRequestException;
 import riwi.demo.utils.messages.ErrorMessages;
+
 
 @Service
 @AllArgsConstructor
@@ -36,7 +32,7 @@ public class UserService implements IUserService {
     @Override
     public UserResp get(String id) {
 
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        return this.entityToResponse(this.find(id));
     }
 
     @Override
