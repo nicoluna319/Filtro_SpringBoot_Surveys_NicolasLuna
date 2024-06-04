@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -53,7 +54,13 @@ public class UserService implements IUserService {
     @Override
     public Page<UserResp> getAll(int Page, int size) {
 
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        if (Page < 0)
+            Page = 0;
+
+        PageRequest pagination = PageRequest.of(Page, size);
+
+        return this.userRepository.findAll(pagination)
+                .map(user -> this.entityToResponse(user));
     }
     
 
