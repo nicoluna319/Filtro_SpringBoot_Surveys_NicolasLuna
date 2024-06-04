@@ -23,8 +23,6 @@ public class QuestionReq {
     @NotBlank(message = "True or false es requerido")
     private Boolean active;
 
-    @NotBlank(message = "id de Survey es requerido")
-    private Long survey;
 
     
 }

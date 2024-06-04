@@ -17,6 +17,5 @@ public class QuestionResp {
     private String text;
     private Type type;
     private Boolean active;
-    private String survey;
     private List<String> optionQuestion;
 }
